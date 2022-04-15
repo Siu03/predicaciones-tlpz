@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <h1>Verificación</h1>
+      <h1>asasasa</h1>
     </div>
   );
 }
