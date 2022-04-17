@@ -158,6 +158,6 @@ function defaultValueForm() {
   return {
     email: "",
     password: "",
-    username: "",
+    username: ""
   };
 }
