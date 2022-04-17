@@ -146,7 +146,7 @@ export default function RegisterForm(props) {
       </Form>
 
       <div className="register-form__options">
-        <p onClick={() => setSelectedForm(null)}>Vovler</p>
+        <p onClick={() => setSelectedForm(null)}>Volver</p>
         <p>
           ¿Ya tienes cuenta?{" "}
           <span onClick={() => setSelectedForm("login")}>Iniciar sesión</span>
