@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Button, Icon, Form, Input } from "semantic-ui-react";
+import { toast } from "react-toastify";
 import { validateEmail } from "../../../utils/Validations";
 import firebase from "../../../utils/Firebase";
 import "firebase/auth";
-
-//Importación de estilos
 
 import "./RegisterForm.scss";
 
@@ -17,7 +16,7 @@ export default function RegisterForm(props) {
 
   const handlerShowPassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
   const onChange = e => {
     setFormData({
@@ -43,21 +42,48 @@ export default function RegisterForm(props) {
       errors.username = true;
       formOk = false;
     }
-
     setFormError(errors);
 
     if (formOk) {
       setIsLoading(true);
-      firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).then(() => {
-        console.log("Registo completado!");
-      }).catch(() => {
-        console.log("Error al crear la cuenta.");
-      }).finally(() => {
-        setIsLoading(false);
-        setSelectedForm(null);
-      });
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(formData.email, formData.password)
+        .then(() => {
+          changeUserName();
+          sendVerificationEmail();
+        })
+        .catch(() => {
+          toast.error("Error al crear la cuenta.");
+        })
+        .finally(() => {
+          setIsLoading(false);
+          setSelectedForm(null);
+        });
     }
+  };
 
+  const changeUserName = () => {
+    firebase
+      .auth()
+      .currentUser.updateProfile({
+        displayName: formData.username
+      })
+      .catch(() => {
+        toast.error("Error al asignar el nombre de usuario.");
+      });
+  };
+
+  const sendVerificationEmail = () => {
+    firebase
+      .auth()
+      .currentUser.sendEmailVerification()
+      .then(() => {
+        toast.success("Se ha enviado un email de verificacion.");
+      })
+      .catch(() => {
+        toast.error("Error al enviar el email de verificacion.");
+      });
   };
 
   return (
@@ -79,18 +105,22 @@ export default function RegisterForm(props) {
           )}
         </Form.Field>
         <Form.Field>
-          <Input
+        <Input
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Contraseña"
+            error={formError.password}
             icon={
-                showPassword ? (
-                  <Icon name="eye slash outline" link onClick= {handlerShowPassword} />
+              showPassword ? (
+                <Icon
+                  name="eye slash outline"
+                  link
+                  onClick={handlerShowPassword}
+                />
               ) : (
-                  <Icon name="eye" link onClick= {handlerShowPassword} />
+                <Icon name="eye" link onClick={handlerShowPassword} />
               )
             }
-            error={formError.password}
           />
           {formError.password && (
             <span className="error-text">
