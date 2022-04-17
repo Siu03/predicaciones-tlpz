@@ -88,7 +88,7 @@ export default function RegisterForm(props) {
 
   return (
     <div className="register-form">
-      <h1>Empieza a escuchar las predicaciones locales.</h1>
+      <h1>Escucha las predicaciones locales</h1>
       <Form onSubmit={onSubmit} onChange={onChange}>
         <Form.Field>
           <Input
@@ -105,7 +105,7 @@ export default function RegisterForm(props) {
           )}
         </Form.Field>
         <Form.Field>
-        <Input
+          <Input
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Contraseña"
@@ -132,7 +132,7 @@ export default function RegisterForm(props) {
           <Input
             type="text"
             name="username"
-            placeholder="¿Cómo deberíamos llamarte?"
+            placeholder="¿Como deberíamos llamarte?"
             icon="user circle outline"
             error={formError.username}
           />
@@ -140,13 +140,15 @@ export default function RegisterForm(props) {
             <span className="error-text">Por favor, introduce un nombre.</span>
           )}
         </Form.Field>
-        <Button type="submit" loading={isLoading}>Continuar</Button>
+        <Button type="submit" loading={isLoading}>
+          Continuar
+        </Button>
       </Form>
 
       <div className="register-form__options">
-        <p onClick={() => setSelectedForm(null)}>Volver</p>
+        <p onClick={() => setSelectedForm(null)}>Vovler</p>
         <p>
-          ¿Ya tienes una cuenta?{" "}
+          ¿Ya tienes cuenta?{" "}
           <span onClick={() => setSelectedForm("login")}>Iniciar sesión</span>
         </p>
       </div>
