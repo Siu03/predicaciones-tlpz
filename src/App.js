@@ -29,7 +29,7 @@ function App() {
     <>
       {!user ? (
       <Auth />
-      ): (
+      ) : (
       <userLogged />
       )}
       <ToastContainer
