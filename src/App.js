@@ -27,26 +27,4 @@ function App() {
   );
 }
 
-
-
-
-// M. U. esté logeado.
-
-function userLogged() {
-  return (
-    <div style={{
-      display: "flex", 
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "column",
-      height: "100vh"
-      }}
-    >
-
-      <h1>Usuario logeado</h1>
-      <button>Cerrar sesión</button> 
-    </div>
-  )
-}
-
 export default App;
