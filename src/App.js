@@ -4,6 +4,7 @@ import firebase from "./utils/Firebase";
 import "firebase/auth";
 // import { initializeAuth } from "firebase/auth";
 import Auth from "./pages/Auth";
+import LoggedLayout from "./layouts/LoggedLayout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,11 +28,7 @@ function App() {
   
   return (
     <>
-      {!user ? (
-      <Auth />
-      ) : (
-      <userLogged />
-      )}
+      {!user ? <Auth /> : <LoggedLayout user={user} />}
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
