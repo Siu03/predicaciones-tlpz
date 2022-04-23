@@ -11,7 +11,7 @@ export default function Routes() {
         <Route path="/" exact>
             <Home />
         </Route>
-        <Route path="/artists" exact>
+        <Route path="/hermanos" exact>
             <h1>Artistas</h1>
         </Route>
         <Route path="/settings" exact>
