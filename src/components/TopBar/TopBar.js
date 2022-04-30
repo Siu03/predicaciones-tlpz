@@ -15,7 +15,7 @@ function TopBar(props) {
     };
 
     const logout = () => {
-        console.log("Cerrar sesión");
+        firebase.auth().signOut();
     };
 
   return (
