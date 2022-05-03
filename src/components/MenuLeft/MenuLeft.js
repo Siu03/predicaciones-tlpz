@@ -81,4 +81,4 @@ function MenuLeft(props) {
     </>
   );
 }
-export default withRouter(MenuLeft);
+export default useNavigate(MenuLeft);
