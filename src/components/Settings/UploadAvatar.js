@@ -12,14 +12,31 @@ export default function UploadAvatar(props) {
     const [avatarUrl, setAvatarUrl] = useState(user.photoURL);
     
     const onDrop = useCallback(acceptedFile => {
-      console.log(acceptedFile);
+      const file = acceptedFile[0];
+      setAvatarUrl(URL.createObjectURL(file));
+      //...
+      uploadImage(file).then(() => {
+        updateUserAvatar();
+      });
     });
 
-    const { getRootProps ,getInputProps, isDragActive } = useDropzone({
-      accept: "images/jpeg, image/png",
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+      accept: "image/jpeg, image/png",
       noKeyboard: true,
       onDrop
     });
+
+    const uploadImage = file => {
+      const ref = firebase
+      .storage()
+      .ref()
+      .child(`avatar/${user.uid}`);
+      return ref.put(file);
+    };
+
+    const updateUserAvatar = () => {
+      
+    }
 
 
   return (
