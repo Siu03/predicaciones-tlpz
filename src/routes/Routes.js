@@ -1,24 +1,18 @@
-import React from 'react';
-import { Switch, Route } from "react-router-dom";
-
+import React from "react";
+import { Routes as RoutesRRD, Route } from "react-router-dom";
+ 
 //Pages
 import Home from "../pages/Home";
-import Settings from '../pages/Settings';
-
+import Settings from "../pages/Settings";
+ 
 export default function Routes(props) {
   const { user } = props;
-
+ 
   return (
-    <Switch>
-        <Route path="/" exact>
-            <Home />
-        </Route>
-        <Route path="/hermanos" exact>
-            <h1>Artistas</h1>
-        </Route>
-        <Route path="/settings" exact>
-            <Settings user={user} />
-        </Route>
-    </Switch>
-  )
+    <RoutesRRD>
+      <Route path="/" element={<Home />} />
+      <Route path="/hermanos" element={<h1>Artistas</h1>} />
+      <Route path="/settings" element={<Settings user={user} />} />
+    </RoutesRRD>
+  );
 }
